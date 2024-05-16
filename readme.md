@@ -10,7 +10,7 @@ _Please make sure you have nodejs installed in your machine_
 
 
 ## Server Setup
-1. Enter the client folder and run the following command in your terminal:
+1. Enter the server folder and run the following command in your terminal:
     `npm install`
 
 2. Test if installation was successful by running `npm run dev` in your terminal (in the same directory). Go to http://localhost:5000/api in your browser, and if it shows a blank page with "{"users":["user1","user2"]}" text, then the client has been successfully set up.
