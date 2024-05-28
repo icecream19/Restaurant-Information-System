@@ -1,0 +1,56 @@
+/* src/global.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+h1 {
+  text-align: center;
+}
+/* --------- NAVBAR ----------- */
+.navbar-container {
+  max-width: 1200px; /* Adjust the max-width as needed */
+  margin: 0 auto; /* Center the navbar container */
+  padding: 0 20px; /* Add space to the left and right */
+}
+
+.navbar {
+  background-color: #1C2533;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.navbar img {
+  height: 30px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-right: 20px;
+}
+
+.navbar ul li:last-child {
+  margin-right: 0;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Add a transition effect */
+}
+
+.navbar ul li a:hover {
+  color: #b3b3b3; /* Change to the color you want on hover */
+}
+
