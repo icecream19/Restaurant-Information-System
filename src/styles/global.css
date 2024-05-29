@@ -101,7 +101,6 @@ h1 {
 
 /*---------- MENU -----------*/
 
-/*---------- MENU -----------*/
 
 .OrderHeading {
   text-align: center;
@@ -306,3 +305,65 @@ h1 {
 .order-status-page ul li button:hover {
   background-color: #0056b3;
 }
+
+/*---------- MANAGE PAGE -------------*/
+
+/*---------- MANAGE PAGE -------------*/
+
+.manage-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-management {
+  background-color: #E0E8F4;
+  padding: 20px;
+  flex: 1; /* Take up equal space */
+}
+
+.menu-management ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.menu-management ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.menu-management input[type="text"],
+.menu-management input[type="number"] {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.menu-management button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px; /* Add space between button and input boxes */
+}
+
+.menu-management button:hover {
+  background-color: #0056b3;
+}
+
+.add-item-box {
+  margin-top: 20px;
+}
+
+.table-management {
+  margin-top: 20px;
+}
+

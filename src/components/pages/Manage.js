@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import MenuDisplay from '../Elements/MenuDisplay';
 
 const Manage = () => {
   const [menuItems, setMenuItems] = useState([]);
@@ -7,86 +8,75 @@ const Manage = () => {
   const [occupiedTables, setOccupiedTables] = useState(0);
 
   useEffect(() => {
-    // Fetch menu items and table data from the server when the component mounts
+    // Mocking fetchMenuItems and fetchTableData for demonstration
+    const fetchMenuItems = async () => {
+      // Simulating fetching menu items from an API
+      const response = await fetch('/api/menu');
+      const data = await response.json();
+      setMenuItems(data);
+    };
+
+    const fetchTableData = async () => {
+      // Simulating fetching table data from an API
+      const response = await fetch('/api/tables');
+      const data = await response.json();
+      setAvailableTables(data.available);
+      setOccupiedTables(data.occupied);
+    };
+
     fetchMenuItems();
     fetchTableData();
   }, []);
 
-  const fetchMenuItems = async () => {
-    const response = await fetch('/api/menu');
-    const data = await response.json();
-    setMenuItems(data);
+  const handleAddItem = () => {
+    // Add item logic
   };
 
-  const fetchTableData = async () => {
-    const response = await fetch('/api/tables');
-    const data = await response.json();
-    setAvailableTables(data.available);
-    setOccupiedTables(data.occupied);
+  const handleDeleteItem = () => {
+    // Delete item logic
   };
 
-  const handleAddItem = async () => {
-    await fetch('/api/menu', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newItem),
-    });
-    fetchMenuItems();
-    setNewItem({ name: '', price: '' });
+  const handleEditItem = () => {
+    // Edit item logic
   };
 
-  const handleDeleteItem = async (id) => {
-    await fetch(`/api/menu/${id}`, { method: 'DELETE' });
-    fetchMenuItems();
-  };
-
-  const handleEditItem = async (id, updatedItem) => {
-    await fetch(`/api/menu/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedItem),
-    });
-    fetchMenuItems();
-  };
-
-  const handleTableChange = async (type, value) => {
-    await fetch(`/api/tables/${type}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ value }),
-    });
-    fetchTableData();
+  const handleTableChange = () => {
+    // Table change logic
   };
 
   return (
     <div className="manage-page">
       <h1>Manage Menu and Tables</h1>
       <div className="menu-management">
-        <h2>Menu Items</h2>
+        <MenuDisplay />
         <ul>
           {menuItems.map((item, index) => (
             <li key={index}>
-              {item.name} - ${item.price}
+              <span>{item.name} - ${item.price}</span>
               <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
-              <button onClick={() => handleEditItem(item.id, { ...item, name: 'New Name', price: 'New Price' })}>Edit</button>
+              <button onClick={() => handleEditItem(item.id)}>Edit</button>
             </li>
           ))}
         </ul>
-        <h3>Add New Item</h3>
-        <input
-          type="text"
-          value={newItem.name}
-          onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
-          placeholder="Name"
-        />
-        <input
-          type="text"
-          value={newItem.price}
-          onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
-          placeholder="Price"
-        />
-        <button onClick={handleAddItem}>Add Item</button>
-      </div>
+
+        <div className="add-item-box">
+            <h2>Add New Item</h2>
+          <input
+            type="text"
+            value={newItem.name}
+            onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+            placeholder="Name"
+          />
+          <input
+            type="text"
+            value={newItem.price}
+            onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+            placeholder="Price"
+          />
+          <button onClick={handleAddItem}>Add Item</button>
+        </div>
+
+
       <div className="table-management">
         <h2>Table Management</h2>
         <div>
@@ -106,6 +96,7 @@ const Manage = () => {
           />
         </div>
       </div>
+</div>
     </div>
   );
 };

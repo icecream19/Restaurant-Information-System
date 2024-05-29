@@ -33,7 +33,7 @@ const Order = () => {
       </div>
       <div className="order-page">
         <div>
-          <Menu onAddToCart={handleAddToCart} />
+          <Menu onAddToCart={handleAddToCart} dineIn={dineIn} /> {/* Pass dineIn prop to Menu component */}
         </div>
         <div>
           <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
@@ -45,6 +45,7 @@ const Order = () => {
 };
 
 export default Order;
+
 
 
 
