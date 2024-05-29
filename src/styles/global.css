@@ -54,3 +54,255 @@ h1 {
   color: #b3b3b3; /* Change to the color you want on hover */
 }
 
+/* ------------ HOMEPAGE --------------*/
+
+.homepage {
+  text-align: center;
+  padding: 50px;
+}
+
+.homepage h1 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.option-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.option-button.takeaway {
+  background-color: #f8b400;
+  color: white;
+}
+
+.option-button.takeaway:hover {
+  background-color: #d99a00;
+}
+
+.option-button.dinein {
+  background-color: #4caf50;
+  color: white;
+}
+
+.option-button.dinein:hover {
+  background-color: #45a049;
+}
+
+/*---------- MENU -----------*/
+
+/*---------- MENU -----------*/
+
+.OrderHeading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.order-page {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  padding: 20px;
+}
+
+.order-page > div {
+  flex: 1;
+  max-width: 600px; /* Add a maximum width to ensure they don't stretch too much */
+  margin: 0 10px; /* Add margin to ensure spacing between the boxes */
+}
+
+.menu {
+  background-color: #E0E8F4;
+  padding: 20px;
+  flex: 1; /* Take up equal space */
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.menu ul li button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.menu ul li button:hover {
+  background-color: #0056b3;
+}
+
+.cart {
+  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  flex: 1; /* Take up equal space */
+}
+
+.cart h2 {
+  margin-top: 0;
+}
+
+.cart ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Updated styles */
+
+.cart ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cart ul li button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.cart ul li button:hover {
+  background-color: #c82333;
+}
+
+.cart .total {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  text-align: right;
+}
+
+.option-button.checkout {
+  display: inline-block;
+
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50; /* Green background color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transition effect */
+}
+
+.option-button.checkout:hover {
+  background-color: #388e3c; /* Darker green on hover */
+}
+
+
+/*-------------- CHECKOUT PAGE --------------*/
+.checkout-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.cart-items {
+  width: 50%;
+  background-color: #E0E8F4; /* Background color */
+  padding: 20px; /* Padding for spacing */
+  margin-bottom: 20px;
+  border-radius: 5px; /* Rounded corners */
+}
+
+.cart-items h2 {
+  margin-bottom: 10px;
+}
+
+.cart-items ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cart-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.total-price {
+  margin-bottom: 20px;
+}
+
+.confirm-order-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-order-button:hover {
+  background-color: #0056b3;
+}
+
+/*----------- ORDERSTATUS -------------*/
+
+.order-status-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.order-status-page ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.order-status-page ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.order-status-page ul li button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.order-status-page ul li button:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "name": "Spaghetti Carbonara",
+    "price": 12.99
+  },
+  {
+    "id": 2,
+    "name": "Margherita Pizza",
+    "price": 10.99
+  },
+  {
+    "id": 3,
+    "name": "Caesar Salad",
+    "price": 8.99
+  },
+  {
+    "id": 4,
+    "name": "Grilled Salmon",
+    "price": 15.99
+  },
+  {
+    "id": 5,
+    "name": "Beef Tacos",
+    "price": 9.99
+  },
+  {
+    "id": 6,
+    "name": "Chicken Alfredo",
+    "price": 13.99
+  },
+  {
+    "id": 7,
+    "name": "Veggie Burger",
+    "price": 11.49
+  },
+  {
+    "id": 8,
+    "name": "BBQ Ribs",
+    "price": 16.99
+  },
+  {
+    "id": 9,
+    "name": "Pad Thai",
+    "price": 14.49
+  },
+  {
+    "id": 10,
+    "name": "Sushi Platter",
+    "price": 18.99
+  },
+  {
+    "id": 11,
+    "name": "Cheeseburger",
+    "price": 9.99
+  },
+  {
+    "id": 12,
+    "name": "Lobster Bisque",
+    "price": 17.99
+  },
+  {
+    "id": 13,
+    "name": "Chicken Tikka Masala",
+    "price": 13.49
+  },
+  {
+    "id": 14,
+    "name": "Greek Salad",
+    "price": 7.99
+  },
+  {
+    "id": 15,
+    "name": "Fish and Chips",
+    "price": 12.49
+  }
+]

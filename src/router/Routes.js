@@ -10,18 +10,17 @@ import OrderStatus from '../components/pages/OrderStatus';
 const AppRoutes = () => {
   return (
     <Router>
-    <Navbar />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/manage" element={<Manage />} />
         <Route path="/order" element={<Order />} />
         <Route path="/orderstatus" element={<OrderStatus />} />
-
-        {/* Add more routes here as needed */}
       </Routes>
     </Router>
   );
 };
 
 export default AppRoutes;
+
