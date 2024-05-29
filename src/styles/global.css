@@ -1,0 +1,369 @@
+/* src/global.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+h1 {
+  text-align: center;
+}
+/* --------- NAVBAR ----------- */
+.navbar-container {
+  max-width: 1200px; /* Adjust the max-width as needed */
+  margin: 0 auto; /* Center the navbar container */
+  padding: 0 20px; /* Add space to the left and right */
+}
+
+.navbar {
+  background-color: #1C2533;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.navbar img {
+  height: 30px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-right: 20px;
+}
+
+.navbar ul li:last-child {
+  margin-right: 0;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Add a transition effect */
+}
+
+.navbar ul li a:hover {
+  color: #b3b3b3; /* Change to the color you want on hover */
+}
+
+/* ------------ HOMEPAGE --------------*/
+
+.homepage {
+  text-align: center;
+  padding: 50px;
+}
+
+.homepage h1 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.option-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.option-button.takeaway {
+  background-color: #f8b400;
+  color: white;
+}
+
+.option-button.takeaway:hover {
+  background-color: #d99a00;
+}
+
+.option-button.dinein {
+  background-color: #4caf50;
+  color: white;
+}
+
+.option-button.dinein:hover {
+  background-color: #45a049;
+}
+
+/*---------- MENU -----------*/
+
+
+.OrderHeading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.order-page {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  padding: 20px;
+}
+
+.order-page > div {
+  flex: 1;
+  max-width: 600px; /* Add a maximum width to ensure they don't stretch too much */
+  margin: 0 10px; /* Add margin to ensure spacing between the boxes */
+}
+
+.menu {
+  background-color: #E0E8F4;
+  padding: 20px;
+  flex: 1; /* Take up equal space */
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.menu ul li button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.menu ul li button:hover {
+  background-color: #0056b3;
+}
+
+.cart {
+  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  flex: 1; /* Take up equal space */
+}
+
+.cart h2 {
+  margin-top: 0;
+}
+
+.cart ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Updated styles */
+
+.cart ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cart ul li button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.cart ul li button:hover {
+  background-color: #c82333;
+}
+
+.cart .total {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  text-align: right;
+}
+
+.option-button.checkout {
+  display: inline-block;
+
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50; /* Green background color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transition effect */
+}
+
+.option-button.checkout:hover {
+  background-color: #388e3c; /* Darker green on hover */
+}
+
+
+/*-------------- CHECKOUT PAGE --------------*/
+.checkout-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.cart-items {
+  width: 50%;
+  background-color: #E0E8F4; /* Background color */
+  padding: 20px; /* Padding for spacing */
+  margin-bottom: 20px;
+  border-radius: 5px; /* Rounded corners */
+}
+
+.cart-items h2 {
+  margin-bottom: 10px;
+}
+
+.cart-items ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cart-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.total-price {
+  margin-bottom: 20px;
+}
+
+.confirm-order-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-order-button:hover {
+  background-color: #0056b3;
+}
+
+/*----------- ORDERSTATUS -------------*/
+
+.order-status-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.order-status-page ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.order-status-page ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.order-status-page ul li button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.order-status-page ul li button:hover {
+  background-color: #0056b3;
+}
+
+/*---------- MANAGE PAGE -------------*/
+
+/*---------- MANAGE PAGE -------------*/
+
+.manage-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-management {
+  background-color: #E0E8F4;
+  padding: 20px;
+  flex: 1; /* Take up equal space */
+}
+
+.menu-management ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.menu-management ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.menu-management input[type="text"],
+.menu-management input[type="number"] {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.menu-management button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px; /* Add space between button and input boxes */
+}
+
+.menu-management button:hover {
+  background-color: #0056b3;
+}
+
+.add-item-box {
+  margin-top: 20px;
+}
+
+.table-management {
+  margin-top: 20px;
+}
+

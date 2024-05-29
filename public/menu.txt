@@ -1,0 +1,15 @@
+1, Spaghetti Carbonara, 12.99
+2, Margherita Pizza, 10.99
+3, Caesar Salad, 8.99
+4, Grilled Salmon, 15.99
+5, Beef Tacos, 9.99
+6, Chicken Alfredo, 13.99
+7, Veggie Burger, 11.49
+8, BBQ Ribs, 16.99
+9, Pad Thai, 14.49
+10, Sushi Platter, 18.99
+11, Cheeseburger, 9.99
+12, Lobster Bisque, 17.99
+13, Chicken Tikka Masala, 13.49
+14, Greek Salad, 7.99
+15, Fish and Chips, 12.49
