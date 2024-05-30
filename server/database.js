@@ -33,17 +33,27 @@ db.serialize(() => {
     // Initialize available tables
     db.run(`INSERT OR IGNORE INTO tables (id, available_tables) VALUES (1, 8)`);
 
-    // Clear existing data
-    db.run(`DELETE FROM menu_items`);
-    db.run(`DELETE FROM orders`);
-    db.run(`DELETE FROM order_items`);
-
-    // Insert placeholder data for menu items
-    db.run(`INSERT INTO menu_items (name, description, price) VALUES ('Pizza', 'Delicious cheese pizza', 12.00)`);
-    db.run(`INSERT INTO menu_items (name, description, price) VALUES ('Pasta', 'Creamy alfredo pasta', 10.00)`);
-    db.run(`INSERT INTO menu_items (name, description, price) VALUES ('Salad', 'Fresh garden salad', 8.00)`);
-    db.run(`INSERT INTO menu_items (name, description, price) VALUES ('Burger', 'Juicy beef burger', 15.00)`);
-    db.run(`INSERT INTO menu_items (name, description, price) VALUES ('Ice Cream', 'Vanilla ice cream', 5.00)`);
+    // Insert placeholder data for menu items if not already present
+    db.get('SELECT COUNT(*) AS count FROM menu_items', (err, row) => {
+        if (err) {
+            console.error('Error counting menu items:', err);
+            return;
+        }
+        if (row.count === 0) {
+            const menuItems = [
+                { name: 'Pizza', description: 'Delicious cheese pizza', price: 12.00 },
+                { name: 'Pasta', description: 'Creamy alfredo pasta', price: 10.00 },
+                { name: 'Salad', description: 'Fresh garden salad', price: 8.00 },
+                { name: 'Burger', description: 'Juicy beef burger', price: 15.00 },
+                { name: 'Ice Cream', description: 'Vanilla ice cream', price: 5.00 }
+            ];
+            const stmt = db.prepare('INSERT INTO menu_items (name, description, price) VALUES (?, ?, ?)');
+            for (const item of menuItems) {
+                stmt.run(item.name, item.description, item.price);
+            }
+            stmt.finalize();
+        }
+    });
 });
 
 module.exports = db;

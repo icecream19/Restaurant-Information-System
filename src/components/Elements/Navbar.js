@@ -11,18 +11,8 @@ const Navbar = () => {
           </a>
         </li>
         <li>
-          <a href="/checkout" className="hover:text-gray-300">
-            Checkout
-          </a>
-        </li>
-        <li>
           <a href="/manage" className="hover:text-gray-300">
             Manage
-          </a>
-        </li>
-        <li>
-          <a href="/order" className="hover:text-gray-300">
-            Order
           </a>
         </li>
         <li>

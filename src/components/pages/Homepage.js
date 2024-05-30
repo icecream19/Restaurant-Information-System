@@ -1,16 +1,35 @@
-// src/components/pages/Homepage.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Homepage = () => {
+  const [availableTables, setAvailableTables] = useState(0);
+  const [notification, setNotification] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchTableData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/tables');
+        setAvailableTables(response.data.available_tables);
+      } catch (error) {
+        console.error('Error fetching table data:', error);
+      }
+    };
+
+    fetchTableData();
+  }, []);
 
   const handleTakeaway = () => {
     navigate('/order');
   };
 
   const handleDineIn = () => {
-    navigate('/order', { state: { dineIn: true } });
+    if (availableTables > 0) {
+      navigate('/order', { state: { dineIn: true } });
+    } else {
+      setNotification('Maximum occupancy reached for dine-ins. Please visit the manage page to update table availability.');
+    }
   };
 
   return (
@@ -24,11 +43,9 @@ const Homepage = () => {
           Dine In
         </button>
       </div>
+      {notification && <p className="notification">{notification}</p>}
     </div>
   );
 };
 
 export default Homepage;
-
-
-

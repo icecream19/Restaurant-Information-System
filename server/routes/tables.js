@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Table = require('../models/table');
 
+// Get table availability
 router.get('/', (req, res) => {
     Table.getAvailability((err, row) => {
         if (err) return res.status(500).send(err);
@@ -9,6 +10,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// Update table availability
 router.post('/update', (req, res) => {
     const { availableTables } = req.body;
     Table.updateAvailability(availableTables, (err) => {

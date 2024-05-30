@@ -8,7 +8,6 @@ const Order = () => {
   const navigate = useNavigate();
   const dineIn = location.state?.dineIn || false;
   const [cartItems, setCartItems] = useState([]);
-  const [nextOrderId, setNextOrderId] = useState(1); // Initialize the next order ID
 
   const handleAddToCart = (item) => {
     setCartItems([...cartItems, item]);
@@ -19,7 +18,7 @@ const Order = () => {
   };
 
   const handleCheckout = () => {
-    navigate('/checkout', { state: { cartItems, nextOrderId } }); // Pass cartItems and nextOrderId to Checkout page
+    navigate('/checkout', { state: { cartItems, dineIn } });
   };
 
   return (
@@ -33,10 +32,10 @@ const Order = () => {
       </div>
       <div className="order-page">
         <div>
-          <Menu onAddToCart={handleAddToCart} dineIn={dineIn} /> {/* Pass dineIn prop to Menu component */}
+          <Menu onAddToCart={handleAddToCart} />
         </div>
         <div>
-          <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
+          <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} onOrderComplete={() => setCartItems([])} />
           <button className="option-button checkout" onClick={handleCheckout}>Go to Checkout</button>
         </div>
       </div>
@@ -45,11 +44,3 @@ const Order = () => {
 };
 
 export default Order;
-
-
-
-
-
-
-
-

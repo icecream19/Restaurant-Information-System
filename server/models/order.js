@@ -16,6 +16,13 @@ class Order {
         });
     }
 
+    static getById(orderId, callback) {
+        const query = `SELECT * FROM orders WHERE order_id = ?`;
+        db.get(query, [orderId], (err, row) => {
+            callback(err, row);
+        });
+    }
+
     static processPayment(orderId, callback) {
         const paymentQuery = `UPDATE orders SET status = 'Paid' WHERE order_id = ?`;
         db.run(paymentQuery, [orderId], function (err) {
@@ -25,6 +32,7 @@ class Order {
 
     static complete(orderId, callback) {
         const completeQuery = `UPDATE orders SET status = 'Completed' WHERE order_id = ?`;
+        console.log('Order complete query:', completeQuery); // Debugging line
         db.run(completeQuery, [orderId], function (err) {
             callback(err);
         });

@@ -7,12 +7,8 @@ const Menu = ({ onAddToCart }) => {
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
-        const response = await axios.get('/menu.txt');
-        const data = response.data.split('\n').map(line => {
-          const [id, name, price] = line.split(', ');
-          return { id, name, price };
-        });
-        setMenuItems(data);
+        const response = await axios.get('http://localhost:5000/menuItems');
+        setMenuItems(response.data);
       } catch (error) {
         console.error('Error fetching the menu:', error);
       }
@@ -25,14 +21,11 @@ const Menu = ({ onAddToCart }) => {
     <div className="menu">
       <h2>Menu</h2>
       <ul>
-        {menuItems.map((item, index) => (
-          // Check if item name and price are not empty before rendering
-          item.name && item.price && (
-            <li key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {item.name} - ${item.price}
-              <button onClick={() => onAddToCart(item)}>Add</button>
-            </li>
-          )
+        {menuItems.map((item) => (
+          <li key={item.item_id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            {item.name} - ${item.price.toFixed(2)}
+            <button onClick={() => onAddToCart(item)}>Add</button>
+          </li>
         ))}
       </ul>
     </div>
@@ -40,5 +33,3 @@ const Menu = ({ onAddToCart }) => {
 };
 
 export default Menu;
-
-

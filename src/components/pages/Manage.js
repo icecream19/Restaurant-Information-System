@@ -1,47 +1,77 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import MenuDisplay from '../Elements/MenuDisplay';
 
 const Manage = () => {
   const [menuItems, setMenuItems] = useState([]);
-  const [newItem, setNewItem] = useState({ name: '', price: '' });
+  const [newItem, setNewItem] = useState({ name: '', description: '', price: '' });
+  const [editItemId, setEditItemId] = useState(null);
   const [availableTables, setAvailableTables] = useState(0);
-  const [occupiedTables, setOccupiedTables] = useState(0);
 
   useEffect(() => {
-    // Mocking fetchMenuItems and fetchTableData for demonstration
     const fetchMenuItems = async () => {
-      // Simulating fetching menu items from an API
-      const response = await fetch('/api/menu');
-      const data = await response.json();
-      setMenuItems(data);
+      try {
+        const response = await axios.get('http://localhost:5000/menuItems');
+        setMenuItems(response.data);
+      } catch (error) {
+        console.error('Error fetching menu items:', error);
+      }
     };
 
     const fetchTableData = async () => {
-      // Simulating fetching table data from an API
-      const response = await fetch('/api/tables');
-      const data = await response.json();
-      setAvailableTables(data.available);
-      setOccupiedTables(data.occupied);
+      try {
+        const response = await axios.get('http://localhost:5000/tables');
+        setAvailableTables(response.data.available_tables);
+      } catch (error) {
+        console.error('Error fetching table data:', error);
+      }
     };
 
     fetchMenuItems();
     fetchTableData();
   }, []);
 
-  const handleAddItem = () => {
-    // Add item logic
+  const handleAddOrUpdateItem = async () => {
+    try {
+      if (editItemId) {
+        // Update existing item
+        const updatedItem = { ...newItem, item_id: editItemId, price: parseFloat(newItem.price) };
+        await axios.put('http://localhost:5000/menuItems/update', updatedItem);
+        setMenuItems(menuItems.map(item => (item.item_id === editItemId ? updatedItem : item)));
+      } else {
+        // Add new item
+        const response = await axios.post('http://localhost:5000/menuItems/create', newItem);
+        setMenuItems([...menuItems, { ...newItem, item_id: response.data.itemId, price: parseFloat(newItem.price) }]);
+      }
+      setNewItem({ name: '', description: '', price: '' });
+      setEditItemId(null); // Reset edit state
+    } catch (error) {
+      console.error('Error adding/updating menu item:', error);
+    }
   };
 
-  const handleDeleteItem = () => {
-    // Delete item logic
+  const handleEditItem = (item) => {
+    setNewItem({ name: item.name, description: item.description, price: item.price });
+    setEditItemId(item.item_id);
   };
 
-  const handleEditItem = () => {
-    // Edit item logic
+  const handleDeleteItem = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/menuItems/delete/${id}`);
+      setMenuItems(menuItems.filter(item => item.item_id !== id));
+    } catch (error) {
+      console.error('Error deleting menu item:', error);
+    }
   };
 
-  const handleTableChange = () => {
-    // Table change logic
+  const handleTableChange = async (e) => {
+    const updatedTables = parseInt(e.target.value);
+    setAvailableTables(updatedTables);
+    try {
+      await axios.post('http://localhost:5000/tables/update', { availableTables: updatedTables });
+    } catch (error) {
+      console.error('Error updating table availability:', error);
+    }
   };
 
   return (
@@ -50,17 +80,17 @@ const Manage = () => {
       <div className="menu-management">
         <MenuDisplay />
         <ul>
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <span>{item.name} - ${item.price}</span>
-              <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
-              <button onClick={() => handleEditItem(item.id)}>Edit</button>
+          {menuItems.map((item) => (
+            <li key={item.item_id}>
+              <span>{item.name} - ${parseFloat(item.price).toFixed(2)}</span>
+              <button onClick={() => handleDeleteItem(item.item_id)}>Delete</button>
+              <button onClick={() => handleEditItem(item)}>Edit</button>
             </li>
           ))}
         </ul>
 
         <div className="add-item-box">
-            <h2>Add New Item</h2>
+          <h2>{editItemId ? 'Edit Item' : 'Add New Item'}</h2>
           <input
             type="text"
             value={newItem.name}
@@ -69,13 +99,19 @@ const Manage = () => {
           />
           <input
             type="text"
+            value={newItem.description}
+            onChange={(e) => setNewItem({ ...newItem, description: e.target.value })}
+            placeholder="Description"
+          />
+          <input
+            type="number"
             value={newItem.price}
             onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
             placeholder="Price"
           />
-          <button onClick={handleAddItem}>Add Item</button>
+          <button onClick={handleAddOrUpdateItem}>{editItemId ? 'Update Item' : 'Add Item'}</button>
         </div>
-
+      </div>
 
       <div className="table-management">
         <h2>Table Management</h2>
@@ -84,21 +120,13 @@ const Manage = () => {
           <input
             type="number"
             value={availableTables}
-            onChange={(e) => handleTableChange('available', e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Occupied Tables: </label>
-          <input
-            type="number"
-            value={occupiedTables}
-            onChange={(e) => handleTableChange('occupied', e.target.value)}
+            onChange={handleTableChange}
           />
         </div>
       </div>
-</div>
     </div>
   );
 };
 
 export default Manage;
+

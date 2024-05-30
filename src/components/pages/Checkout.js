@@ -1,22 +1,37 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { cartItems, nextOrderId } = location.state || {};
+  const { cartItems, dineIn } = location.state || {};
 
-  // Calculate total price
   const totalPrice = cartItems ? cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0) : 0;
 
-  const handleConfirmOrder = () => {
-    const newOrder = {
-      id: nextOrderId,
-      items: cartItems,
-      total: totalPrice,
-      status: 'active'
-    };
-    navigate('/orderstatus', { state: { newOrder } });
+  const handleConfirmOrder = async () => {
+    try {
+      const orderType = dineIn ? 'dine-in' : 'takeaway';
+      const orderResponse = await axios.post('http://localhost:5000/orders/create', {
+        orderType,
+        totalPrice
+      });
+      const orderId = orderResponse.data.orderId;
+
+      for (const item of cartItems) {
+        await axios.post('http://localhost:5000/orders/addItem', {
+          orderId,
+          itemId: item.item_id,
+          quantity: 1
+        });
+      }
+
+      await axios.post('http://localhost:5000/orders/processPayment', { orderId, dineIn });
+
+      navigate('/orderstatus', { state: { newOrder: { id: orderId, items: cartItems, total: totalPrice, status: 'Pending' } } });
+    } catch (error) {
+      console.error('Error processing order:', error);
+    }
   };
 
   return (
@@ -41,8 +56,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
-
-
-
-
